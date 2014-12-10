@@ -8,61 +8,65 @@
  * Controller of the quizApp
  */
 angular.module('quizApp')
-  .controller('QuizCtrl', function ($scope) {
-    $scope.quiz = [
-    {
-      'q': 'Who is the best ping pong player at FSA?',
-      'options': [{ 'value': 'Mike'} , { 'value': 'Eddie'} , {'value' : 'Nimit'} , { 'value': 'Patrick'}],
-      'answer': 'Nimit',
-      'difficulty' : 3
-    },
-    { 'q': 'Which robot name was chanted during Lego Mindstorms?',
-    'options':[{ 'value': 'infiniteLoop'} , { 'value': 'noHope.js'} , {'value' : 'johnny5'} , { 'value': 'none of the above'}],
-    'answer':'noHope.js',
-    'difficulty' : 1
-  },
-  {
-    'q': 'Out of the following frontend frameworks, which framework is most rails-like',
-    'options':[{ 'value': 'Ember.js'} ,{ 'value': 'Angular.js'} , {'value' : 'Backbone.js'} , { 'value': 'Meteor.js'}],
-    'answer':'Ember.js',
-    'difficulty' : 4
-  },
-  {
-    'q': 'Which project used a local data store?',
-    'options':[{ 'value': 'TripPlanner'} ,{ 'value': 'Twitter.js'} , {'value' : 'WikiWalker'} , { 'value': 'WikiStack'}],
-    'answer':'Twitter.js',
-    'difficulty' : 2
-  }
-  ];
+  .controller('QuizCtrl', function ($scope, $interval, $timeout) {
 
-  $scope.score = 0;
+    //Keeps track of the score on quiz
+  $scope.totalScore = 0;
+  $scope.$on('score', function(event, data) {
+    $scope.totalScore += data;
+  });
 
-  $scope.submit = function() {
-    if(this.question.input === this.question.answer) {
 
-      $scope.score += 5;
-      alert('+5!!!');
+    //Keeps track of the time remaining to take the quiz.
+  // $scope.time = 10;
+  //
+  // $scope.start = function() {
+  //   $interval(function(){
+  //     $scope.time--;
+  //     if ($scope.time === 0) {
+  //       // alert("Time's up!");
+  //
+  //     }
+  //   }, 1000)
+  // }
+
+  $scope.time = 10;
+
+  $scope.start = function() {
+    $scope.onTimeout = function() {
+      if ($scope.time > 0) {
+        $scope.time--;
+        mytimeout = $timeout($scope.onTimeout,1000);
+      } else {
+        $scope.stop();
+      }
+    }
+    var mytimeout = $timeout($scope.onTimeout,1000);
+
+    $scope.stop = function() {
+      $timeout.cancel(mytimeout);
     }
 
-  };
+    $scope.reset = function() {
+      $scope.time = 10;
+    }
+  }
 
-  $scope.addQuestion = function() {
 
-    var newQuestion = {},
-    optionArray = [];
+  // function AlbumCtrl($scope,$timeout) {
+  //   $scope.counter = 0;
+  //   $scope.onTimeout = function(){
+  //     $scope.counter++;
+  //     mytimeout = $timeout($scope.onTimeout,1000);
+  //   }
+  //   var mytimeout = $timeout($scope.onTimeout,1000);
+  //
+  //   $scope.stop = function(){
+  //     $timeout.cancel(mytimeout);
+  //   }
+  // }
 
-    newQuestion.q = this.txtNewQuestion;
-    optionArray.push({'value': this.txtOption1 });
-    optionArray.push({'value': this.txtOption2 });
-    optionArray.push({'value': this.txtOption3 });
-    optionArray.push({'value': this.txtOption4 });
-    newQuestion.options = optionArray;
-    newQuestion.answer = this.radioInput;
-    newQuestion.difficulty = this.difficultyInput;
 
-    $scope.quiz.push(newQuestion);
-    console.log(newQuestion);
 
-  };
 
   });

@@ -10,5 +10,6 @@
 angular.module('quizApp')
   .controller('MainCtrl', function ($scope) {
 
+    
 
   });
