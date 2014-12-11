@@ -46,26 +46,15 @@
       </ul>
     </div>
     <h2>New Question</h2>
+
     <form name="myForm2" ng-submit="addQuestion()">
       Question: <input  ng-model="txtNewQuestion" type="text" style="margin: 5px 0px"><br>
       <h3>Answer Options</h3>
       <div ng-repeat="option in options.choices">
+        <input type="radio">
         <input type="text">
+        <button ng-click="removeOption()">Remove Option</button>
       </div>
-
-
-
-      <!-- <input ng-model="txtOption1" type="text" style="margin: 5px 0px">
-      <input type="radio" ng-model="radioInput" value="{{txtOption1}}" checked>
-      <br>
-      <input ng-model="txtOption2"  type="text" style="margin: 5px 0px">
-      <input type="radio" ng-model="radioInput" value="{{txtOption2}}">
-      <br>
-      <input ng-model="txtOption3"  type="text"  style="margin: 5px 0px">
-      <input type="radio" ng-model="radioInput" value="{{txtOption3}}">
-      <br>
-      <input ng-model="txtOption4" type="text" style="margin: 5px 0px">
-      <input type="radio" ng-model="radioInput" value="{{txtOption4}}" > -->
       <br>
       <button ng-click="addOption()">Add Options</button>
     <!--   Difficulty: <input type="number" ng-model="difficultyInput"> -->

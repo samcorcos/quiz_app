@@ -46,6 +46,11 @@ angular.module('quizApp')
     $scope.options.choices.push({});
   };
 
+  $scope.removeOption = function() {
+    var index = $scope.options.choices.indexOf(this.option);
+    $scope.options.choices.splice(index, 1);
+  }
+
 
   $scope.addQuestion = function() {
 
@@ -62,8 +67,7 @@ angular.module('quizApp')
     newQuestion.answer = this.radioInput;
     newQuestion.difficulty = this.difficultyInput;
 
-    $scope.quiz.push(newQuestion);
-    console.log(newQuestion);
+    $scope.$emit("newQuestion", newQuestion);
 
   };
 

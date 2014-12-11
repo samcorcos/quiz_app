@@ -36,6 +36,11 @@ angular.module('quizApp')
   }
   ];
 
+  $scope.addQuestionToQuiz = function() {
+    $scope.$on('newQuestion', function(event, data) {
+      $scope.quiz.push(data)
+    });
+  }
 
   $scope.submit = function() {
     if(this.question.input === this.question.answer) {
