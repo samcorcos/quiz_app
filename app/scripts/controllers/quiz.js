@@ -16,20 +16,6 @@ angular.module('quizApp')
     $scope.totalScore += data;
   });
 
-
-    //Keeps track of the time remaining to take the quiz.
-  // $scope.time = 10;
-  //
-  // $scope.start = function() {
-  //   $interval(function(){
-  //     $scope.time--;
-  //     if ($scope.time === 0) {
-  //       // alert("Time's up!");
-  //
-  //     }
-  //   }, 1000)
-  // }
-
   $scope.time = 10;
 
   $scope.start = function() {
@@ -52,21 +38,34 @@ angular.module('quizApp')
     }
   }
 
+  $scope.options = {
+    choices: [{},{},{}]
+  };
 
-  // function AlbumCtrl($scope,$timeout) {
-  //   $scope.counter = 0;
-  //   $scope.onTimeout = function(){
-  //     $scope.counter++;
-  //     mytimeout = $timeout($scope.onTimeout,1000);
-  //   }
-  //   var mytimeout = $timeout($scope.onTimeout,1000);
-  //
-  //   $scope.stop = function(){
-  //     $timeout.cancel(mytimeout);
-  //   }
-  // }
+  $scope.addOption = function() {
+    $scope.options.choices.push({});
+  };
 
 
+  $scope.addQuestion = function() {
+
+    var newQuestion = {},
+    optionArray = [];
+
+    newQuestion.q = this.txtNewQuestion;
+
+    // optionArray.push({'value': this.txtOption1 });
+    // optionArray.push({'value': this.txtOption2 });
+    // optionArray.push({'value': this.txtOption3 });
+    // optionArray.push({'value': this.txtOption4 });
+    newQuestion.options = optionArray;
+    newQuestion.answer = this.radioInput;
+    newQuestion.difficulty = this.difficultyInput;
+
+    $scope.quiz.push(newQuestion);
+    console.log(newQuestion);
+
+  };
 
 
   });

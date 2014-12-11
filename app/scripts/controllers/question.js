@@ -47,26 +47,6 @@ angular.module('quizApp')
   };
 
 
-  $scope.addQuestion = function() {
-
-    var newQuestion = {},
-    optionArray = [];
-
-    newQuestion.q = this.txtNewQuestion;
-    optionArray.push({'value': this.txtOption1 });
-    optionArray.push({'value': this.txtOption2 });
-    optionArray.push({'value': this.txtOption3 });
-    optionArray.push({'value': this.txtOption4 });
-    newQuestion.options = optionArray;
-    newQuestion.answer = this.radioInput;
-    newQuestion.difficulty = this.difficultyInput;
-
-    $scope.quiz.push(newQuestion);
-    console.log(newQuestion);
-
-  };
-  
-
 
 
   });

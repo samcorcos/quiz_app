@@ -47,20 +47,28 @@
     </div>
     <h2>New Question</h2>
     <form name="myForm2" ng-submit="addQuestion()">
-      Question: <input ng-model="txtNewQuestion" type="text" style="margin: 5px 0px"><br>
-      Option 1: <input ng-model="txtOption1" type="text" style="margin: 5px 0px">
+      Question: <input  ng-model="txtNewQuestion" type="text" style="margin: 5px 0px"><br>
+      <h3>Answer Options</h3>
+      <div ng-repeat="option in options.choices">
+        <input type="text">
+      </div>
+
+
+
+      <!-- <input ng-model="txtOption1" type="text" style="margin: 5px 0px">
       <input type="radio" ng-model="radioInput" value="{{txtOption1}}" checked>
       <br>
-      Option 2: <input ng-model="txtOption2"  type="text" style="margin: 5px 0px">
+      <input ng-model="txtOption2"  type="text" style="margin: 5px 0px">
       <input type="radio" ng-model="radioInput" value="{{txtOption2}}">
       <br>
-      Option 3: <input ng-model="txtOption3"  type="text"  style="margin: 5px 0px">
+      <input ng-model="txtOption3"  type="text"  style="margin: 5px 0px">
       <input type="radio" ng-model="radioInput" value="{{txtOption3}}">
       <br>
-      Option 4: <input ng-model="txtOption4" type="text" style="margin: 5px 0px">
-      <input type="radio" ng-model="radioInput" value="{{txtOption4}}" >
+      <input ng-model="txtOption4" type="text" style="margin: 5px 0px">
+      <input type="radio" ng-model="radioInput" value="{{txtOption4}}" > -->
       <br>
-      Difficulty: <input type="number" ng-model="difficultyInput">
+      <button ng-click="addOption()">Add Options</button>
+    <!--   Difficulty: <input type="number" ng-model="difficultyInput"> -->
       <button ng-disabled="myForm2.$invalid" type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
